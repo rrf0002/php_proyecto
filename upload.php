@@ -2,7 +2,8 @@
 
 include("cabecera.php");
 include("Conexion.php"); 
-
+$consulta= $conexion->prepare("UPDATE usuarios SET Total_post=Total_post+1 where User='ruben' ");
+            $consulta->execute();
 $filename        = $_FILES['subir_archivo']['name'];
 $sourceFoto      = $_FILES['subir_archivo']['tmp_name'];
 
@@ -20,7 +21,7 @@ $nuevoNameFoto  = 'img-'.$_POST["usuario"].$newNameFoto.'.'.$extension_foto;
 echo json_encode($nuevoNameFoto);
 
 //Verificando si existe el directorio
-$dirLocal = "C:/Users/Usuario/pruebas/src/Pruebas/";
+$dirLocal = "C:/Users/Usuario/pruebas/src/Prueba2/upload/";
 if (!file_exists($dirLocal)) {
     mkdir($dirLocal, 0777, true);
 }

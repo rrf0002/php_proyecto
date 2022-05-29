@@ -4,10 +4,10 @@
 
     $id_categorias=$_POST["id_categorias"];
     $usuario=$_POST["usuario"];
+    
     $consulta= $conexion->prepare("SELECT COUNT(*) FROM likes_dislikes where User='$usuario' && id_articulos=$id_categorias ");
     $consulta->execute();
-    $consulta= $conexion->prepare("SELECT SUM(like_totales+dislike_totales) as suma FROM articulos where id_articulo=$id_categorias ");
-    $consulta->execute();
+    
     $controladorprimerlike = $consulta->fetchColumn();
     if($controladorprimerlike==0){//el usuario no a dado todavia ni like ni dislike a la publicacion concreta
         $consulta= $conexion->prepare("INSERT INTO likes_dislikes(id_articulos,color,User) VALUES($id_categorias,'like','$usuario')");
